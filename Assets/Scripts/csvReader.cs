@@ -13,7 +13,8 @@ public class csvReader : MonoBehaviour
     private int qnum; //–â‘è”Ô†
     public Text quest; //–â‘è•¶
     public Text[] choices = new Text[4]; //
-    public Text ans; //“š‚¦
+    public static int ans; //“š‚¦
+    public static string answer;
 
 
     // Start is called before the first frame update
@@ -30,15 +31,13 @@ public class csvReader : MonoBehaviour
 
         System.Random rand = new System.Random();
         qnum = rand.Next(0, csvData.Count);//ƒ‰ƒ“ƒ_ƒ€‚É–â‘èŒˆ’è
-    }
 
-    private void Update()
-    {
         quest.text = string.Format("{0}", csvData[qnum][0]); //–â‘è•¶
         for (int i = 0; i < 4; i++) //‘I‘ğˆ
         {
             choices[i].text = string.Format(csvData[qnum][i + 1]);
         }
-        ans.text = string.Format("{0}", csvData[qnum][5]); //–â‘è•¶
+        ans = int.Parse(csvData[qnum][5]); //“š‚¦”Ô†
+        answer = choices[ans - 1].text;
     }
 }
